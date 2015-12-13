@@ -11,6 +11,7 @@ struct Node *head;
 void insert(int,int);
 void delete(int);
 void display();
+void reverse();
 
 int main()
 {
@@ -38,6 +39,9 @@ int main()
     scanf(" %c",&choice);
   }while(choice=='y'||choice=='Y');
   printf("The list is:\n");
+  display();
+  printf("The list after reversal is:\n");
+  reverse();
   display();
 }
 
@@ -88,4 +92,19 @@ void delete(int n)
   struct Node *t2 = t1->next;
   t1->next = t1->next->next;
   free(t2);
+}
+
+void reverse()
+{
+  struct Node *current,*next,*prev;
+  prev = NULL;
+  current = head;
+  while(current!=NULL)
+  {
+    next = current->next;
+    current->next = prev;
+    prev = current;
+    current = next;
+  }
+  head=prev;
 }
